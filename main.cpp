@@ -15,6 +15,7 @@ void testRotate(ArrayStack<T>& stack) {
     cout << stack << endl;
 }
 
+
 int main() {
 
     try {
