@@ -7,60 +7,45 @@ using namespace std;
 
 template <typename T>
 class ArrayStack : public Stack<T> {
-    private:
-        // an array that contains the elements
-        T* buffer;
 
-        // the maximum number of elements in the stack
-        int maxSize;
+private:
+    T* buffer;
+    int maxSize;
 
-        // copy the state of the argument stack to `this`
-        void copy(const ArrayStack<T>&);
+    void copy(const ArrayStack<T>&);
 
-    public:
-        // constructor with the maximum size as the argument
-        ArrayStack(int = 100);
+public:
 
-        // copy constructor
-        ArrayStack(const ArrayStack<T>&);
+    ArrayStack(int = 100);
 
-        // overloaded assignment operator
-        ArrayStack<T>& operator=(const ArrayStack<T>&);
+    ArrayStack(const ArrayStack<T>&);
 
-        // destructor
-        virtual ~ArrayStack();
+    ArrayStack<T>& operator=(const ArrayStack<T>&);
 
-        // remove all elements in the stack, resetting to the initial state
-        virtual void clear() override;
+    virtual ~ArrayStack();
 
-        // return the current length of the stack
-        virtual int getLength() const override;
+    virtual void clear() override;
 
-        // return the maximum size of the stack
-        int getMaxSize() const;
+    virtual int getLength() const override;
 
-        // determine if the stack currently empty
-        virtual bool isEmpty() const override;
+    int getMaxSize() const;
 
-        // determine if the stack is currently full
-        bool isFull() const;
+    virtual bool isEmpty() const override;
 
-        // return the element at the top of the stack
-        virtual T peek() const override;
+    bool isFull() const;
 
-        // remove the top element from the stack
-        virtual void pop() override;
+    virtual T peek() const override;
 
-        // add the argument to the top of the stack
-        virtual void push(const T&) override;
+    virtual void pop() override;
 
-        // rearranges the elements in the stack according to the argument
-        virtual void rotate(typename Stack<T>::Direction) override;
+    virtual void push(const T&) override;
 
-        // overloaded stream insertion operator to make printing easier
-        template <typename U>
-        friend ostream& operator<<(ostream&, const ArrayStack<U>&);
+    virtual void rotate(typename Stack<T>::Direction) override;
+
+    template <typename U>
+    friend ostream& operator<<(ostream&, const ArrayStack<U>&);
 };
 
 #include "ArrayStack.tpp"
+
 #endif

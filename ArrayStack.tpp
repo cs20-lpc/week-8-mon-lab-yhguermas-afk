@@ -125,6 +125,7 @@ void ArrayStack<T>::rotate(typename Stack<T>::Direction dir) {
 
         for (int i = 0; i < this->length - 1; i++)
             buffer[i] = buffer[i + 1];
+            
 
         buffer[this->length - 1] = temp;
     }
