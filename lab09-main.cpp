@@ -1,69 +1,77 @@
-#include <iostream>
 #include "ArrayStack.hpp"
-
+#include <iostream>
 using namespace std;
-
-template <typename T>
-void testRotate(ArrayStack<T>& stack) {
-
-    cout << "\nRotate RIGHT:\n";
-    stack.rotate(Stack<T>::RIGHT);
-    cout << stack << endl;
-
-    cout << "\nRotate LEFT:\n";
-    stack.rotate(Stack<T>::LEFT);
-    cout << stack << endl;
-}
-
 
 int main() {
 
+    ArrayStack<int> stackA(10);
+    ArrayStack<int> stackB(10);
+    ArrayStack<int> stackC(10);
+
+    // push 0–9 into stackA
+    for (int i = 0; i < 10; i++) {
+        stackA.push(i);
+        cout << i << " ";
+    }
+    cout << endl;
+
+    // stackA full test
+    if (stackA.isFull()) {
+        cout << "Stack A is full!" << endl;
+    }
+
+    cout << "Stack A length: " << stackA.getLength() << endl;
+
+    // copy A into B
+    stackB = stackA;
+
+    cout << "Stack B length: " << stackB.getLength() << endl;
+
+    // overflow test
     try {
-
-        cout << "Testing Integer Stack\n";
-
-        ArrayStack<int> s(5);
-
-        s.push(10);
-        s.push(20);
-        s.push(30);
-
-        cout << s << endl;
-
-        cout << "Peek: " << s.peek() << endl;
-
-        s.pop();
-
-        cout << "After pop:\n";
-        cout << s << endl;
-
-        testRotate(s);
-
-
-        cout << "\nTesting String Stack\n";
-
-        ArrayStack<string> s2(5);
-
-        s2.push("A");
-        s2.push("B");
-        s2.push("C");
-
-        cout << s2 << endl;
-
-        testRotate(s2);
-
-
-        cout << "\nTesting full stack exception\n";
-
-        s.push(40);
-        s.push(50);
-        s.push(60);
-
+        stackA.push(10);
     }
-    
-
-    catch (string err) {
-        cout << "Exception: " << err << endl;
+    catch (...) {
+        cout << "push: error, stack is full, avoiding overflow" << endl;
     }
 
-};
+    // pop 5 elements from B
+    for (int i = 0; i < 5; i++) {
+        cout << "Popping " << stackB.peek() << " from stack B" << endl;
+        stackB.pop();
+    }
+
+    cout << "Stack B length: " << stackB.getLength() << endl;
+
+    // clear stackB
+    stackB.clear();
+
+    if (stackB.isEmpty()) {
+        cout << "Stack B is now empty after being cleared" << endl;
+    }
+
+    // underflow test
+    try {
+        stackB.pop();
+    }
+    catch (...) {
+        cout << "pop: error, stack is empty, avoiding underflow" << endl;
+    }
+
+    // peek empty test
+    try {
+        stackB.peek();
+    }
+    catch (...) {
+        cout << "peek: error, stack is empty, cannot access the top" << endl;
+    }
+
+    cout << "Stack A length: " << stackA.getLength() << endl;
+
+    // copy constructor test
+    stackC = stackA;
+
+    cout << "Stack C length: " << stackC.getLength() << endl;
+
+    return 0;
+}
