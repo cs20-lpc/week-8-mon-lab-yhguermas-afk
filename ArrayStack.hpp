@@ -40,6 +40,7 @@ public:
 
     virtual void push(const T&) override;
 
+    
     virtual void rotate(typename Stack<T>::Direction) override;
 
     template <typename U>
