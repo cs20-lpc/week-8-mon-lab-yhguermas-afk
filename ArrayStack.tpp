@@ -142,5 +142,7 @@ ostream& operator<<(ostream& outStream, const ArrayStack<T>& myObj) {
         }
     }
 
+
+    
     return outStream;
 }
