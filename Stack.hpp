@@ -3,42 +3,49 @@
 
 template <typename T>
 class Stack {
-    public:
-        enum Direction {
-            RIGHT, LEFT,
-        };
 
-    protected:
-        // the current number of elements in the stack
-        int length;
+public:
 
-    public:
-        // default constructor
-        Stack() : length(0) { }
+    enum Direction {
+        RIGHT,
+        LEFT
+    };
 
-        // destructor
-        virtual ~Stack() { }
+protected:
 
-        // remove all elements in the stack, resetting to the initial state
-        virtual void clear() = 0;
+    // number of elements currently in the stack
+    int length;
 
-        // return the current length of the stack
-        virtual int getLength() const = 0;
+public:
 
-        // determine if the stack is currently empty
-        virtual bool isEmpty() const = 0;
+    // constructor
+    Stack() {
+        length = 0;
+    }
 
-        // return the element at the top of the stack
-        virtual T peek() const = 0;
+    // destructor
+    virtual ~Stack() {}
 
-        // remove the top element from the stack
-        virtual void pop() = 0;
+    // remove all elements
+    virtual void clear() = 0;
 
-        // add the argument to the top of the stack
-        virtual void push(const T&) = 0;
+    // return number of elements
+    virtual int getLength() const = 0;
 
-        // rearranges the elements in the stack according to the argument
-        virtual void rotate(Direction) = 0;
+    // check if empty
+    virtual bool isEmpty() const = 0;
+
+    // return top element
+    virtual T peek() const = 0;
+
+    // remove top element
+    virtual void pop() = 0;
+
+    // add element
+    virtual void push(const T&) = 0;
+
+    // rotate stack
+    virtual void rotate(Direction) = 0;
 };
 
 #endif
